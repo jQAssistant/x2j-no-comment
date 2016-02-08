@@ -1,0 +1,14 @@
+= X2J No Comment Plugin
+
+The X2J No Comment Plugin is a plugin for the X2J compiler
+of the JAXB standard. Its purpose is to ensure that
+the generated Java classes don't contain any JavaDoc.
+
+== Usage of this plugin
+
+This plugin has been developed only for
+http://www.jqassistant.org/[jQAssistant^]. It can be used
+by anyone but we do not provide any kind of support for
+this plugin.
+
+
