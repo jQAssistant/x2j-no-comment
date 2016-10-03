@@ -4,7 +4,7 @@
 
     <groupId>com.buschmais.x2j.nocomment</groupId>
     <artifactId>nocomment-plugin</artifactId>
-    <version>0.2-SNAPSHOT</version>
+    <version>0.1-SNAPSHOT</version>
 
     <name>X2J No Comment Plugin</name>
 
