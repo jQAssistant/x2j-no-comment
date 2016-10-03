@@ -15,7 +15,7 @@
         <url>http://www.buschmais.com</url>
     </organization>
 
-    <url>https://github.com/jQAssistant/x2j-no-comment</url>
+    <url>https://github.com/buschmais/x2j-no-comment</url>
 
     <licenses>
         <license>
@@ -30,12 +30,23 @@
     </description>
 
     <scm>
-        <connection>scm:git:git@github.com:jQAssistant/x2j-no-comment.git</connection>
-        <developerConnection>scm:git:git@github.com:jQAssistant/x2j-no-comment.git</developerConnection>
-        <url>https://github.com/jQAssistant/x2j-no-comment</url>
+        <connection>scm:git:git@github.com:buschmais/x2j-no-comment.git</connection>
+        <developerConnection>scm:git:git@github.com:buschmais/x2j-no-comment.git</developerConnection>
+        <url>https://github.com/buschmais/x2j-no-comment</url>
     </scm>
 
-
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencies>
         <dependency>
@@ -47,16 +58,102 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-all</artifactId>
             <version>1.10.19</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>6.8.21</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
     <build>
         <defaultGoal>clean install</defaultGoal>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5.2</version>
+                    <configuration>
+                        <mavenExecutorId>forked-path</mavenExecutorId>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <tagNameFormat>@{version}</tagNameFormat>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>2.10.4</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.0.1</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>1.6</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
+
+    <profiles>
+        <profile>
+            <id>release</id>
+            <!--
+              ! This profile is automatically activated by using maven-release-plugin:perfom.
+              ! So this mean signing of artifacts is only done in case of running a release.
+            -->
+            <activation>
+                <property>
+                    <name>performRelease</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>javadoc-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>jar-no-fork</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
