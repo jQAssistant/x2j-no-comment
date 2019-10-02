@@ -20,7 +20,7 @@
         <url>http://www.buschmais.com</url>
     </organization>
 
-    <url>https://github.com/buschmais/x2j-no-comment</url>
+    <url>https://github.com/jqassistant/x2j-no-comment</url>
 
     <licenses>
         <license>
@@ -48,9 +48,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:buschmais/x2j-no-comment.git</connection>
-        <developerConnection>scm:git:git@github.com:buschmais/x2j-no-comment.git</developerConnection>
-        <url>https://github.com/buschmais/x2j-no-comment</url>
+        <connection>scm:git:git@github.com:jqassistant/x2j-no-comment.git</connection>
+        <developerConnection>scm:git:⁄</developerConnection>
+        <url>https://github.com/jqassistant/x2j-no-comment</url>
         <tag>0.1</tag>
     </scm>
 
