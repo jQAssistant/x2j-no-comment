@@ -8,7 +8,7 @@ the generated Java classes don't contain any JavaDoc.
 
 This plugin has been developed only for
 http://www.jqassistant.org/[jQAssistant^]. It can be used
-by anyone but we do not provide any kind of support for
+by anyone, but we do not provide any kind of support for
 this plugin.
 
 
